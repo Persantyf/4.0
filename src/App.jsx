@@ -5249,21 +5249,8 @@ const Paso3SituacionActual = ({ datos, onChange }) => {
   const produccionAnual = parseFloat(datos.fv_produccion_anual) || 0;
   const kWhPorKwp = potenciaPico > 0 ? (produccionAnual / potenciaPico).toFixed(0) : '-';
 
-  const SectionTitle = ({ children }) => (
-    <h3 style={{ 
-      fontSize: '15px', 
-      fontWeight: '600', 
-      color: COLOR_CORP, 
-      marginTop: '28px', 
-      marginBottom: '16px',
-      paddingBottom: '8px',
-      borderBottom: `2px solid ${COLOR_CORP}20`
-    }}>
-      {children}
-    </h3>
-  );
-
   // Usar componentes globales
+  const SectionTitle = GlobalSectionTitle;
   const InputField = (props) => <GlobalInputField {...props} datos={datos} onChange={handleChange} />;
   const ToggleField = (props) => <GlobalToggleField {...props} datos={datos} onChange={handleChange} />;
 
@@ -8042,30 +8029,6 @@ export default function YlioApp() {
               }}>
                 📋 {datosOportunidad.id_oferta}
               </span>
-            )}
-            {/* Indicador de sesión guardada */}
-            {pantalla === 'inicio' && datosIniciales && datosIniciales.datos?.id_oferta && (
-              <button
-                onClick={() => {
-                  setPantalla(datosIniciales.pantalla || 'oportunidad');
-                  setPasoActual(datosIniciales.paso || 1);
-                }}
-                style={{
-                  padding: '8px 16px',
-                  backgroundColor: '#FFF3E0',
-                  border: `1px solid ${COLOR_CORP}`,
-                  borderRadius: '6px',
-                  color: COLOR_CORP,
-                  fontSize: '12px',
-                  fontWeight: '600',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px'
-                }}
-              >
-                🔄 Recuperar sesión ({datosIniciales.datos.id_oferta})
-              </button>
             )}
             <div style={{ 
               display: 'flex', 
